@@ -1,18 +1,21 @@
 ---
-layout: default
+layout: page
 ---
 
-<div class="posts">
+<div class="posts-list">
   {% for post in site.posts %}
-    <article class="post">    
-      
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+    <article class="article-item article-item--compressed">
+      <div class="line-behind">
+        <h4 class="article-item__date">{{ post.date | date: "%m.%d.%Y" }}</h4>
+      </div>
+
+      <h1 class="article-item__title">{{ post.title }}</h1>
+      <h2 class="article-item__lead-in">{{ post.lead-in }}</h2>
 
       <div class="entry">
-        {{ post.content | truncatewords:40}}
+        {{ post.content | truncatewords:30 | strip_html}}
+        <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
       </div>
-      
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
   {% endfor %}
 </div>
